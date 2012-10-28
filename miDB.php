@@ -12,10 +12,10 @@
  *
  */
  $dbOBJ  = new Database();
-$dbOBJ->connect();
+//~ $dbOBJ->connect();
 //~ exit($dbOBJ);
-exit;
-$dbOBJ->connect();
+//~ exit;
+//~ $dbOBJ->connect();
  //~ $dbOBJ2  = new Database();
 //~ $dbOBJ2->connect();
 print_r("\nse ha ejecutado bien\n");
@@ -41,8 +41,8 @@ class Database
     private $result = array();          // Results that are returned from the query
 
     
-    private function __construct(){
-		
+    public function __construct(){
+		echo "vhgvhvhv2";
 	}
     
     /*

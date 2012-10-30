@@ -41,9 +41,6 @@ class Database
     private $result = array();          // Results that are returned from the query
 
     
-    public function __construct(){
-		echo "vhgvhvhv2";
-	}
     
     /*
      * End edit
@@ -53,7 +50,7 @@ class Database
      * Connects to the database, only one connection
      * allowed
      */
-    public function connect()
+    public function __construct()
     {
         if(!$this->con)
         {

@@ -1,4 +1,5 @@
 <?php
+// Este scrpt es el remanente de mi mvc propio 
 # VARIABLES GLOBALES
 $cfg['path_ok'] = "/home/dan/Dropbox/web_CRIKA/web";
 
@@ -19,6 +20,12 @@ $path_cfgs = $cfg['path_ok']."/cfg/";
 //~ CargarNivelCFG("WEB",$path_webcfg);
 CargarNivelCFG("WEB",$path_cfgs."/web.cfg");
 CargarNivelCFG("MAIN",$path_cfgs."/main.cfg");
+
+//~ Function CargarNivelCFG 
+//~ Carga en global cfg el contenido del cfg (fichero del segundo parametro)
+//~ Parameters 
+	//~ Nivel  - es el key del CFG
+	//~ path al cfg
 function CargarNivelCFG($nivel, $path_fh){
 	global $cfg;
 	$fh = fopen($path_fh, 'r');

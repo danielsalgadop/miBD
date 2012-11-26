@@ -14,7 +14,7 @@ function json2array($json){
 }
 
 ###3 pruebas 
-if(0){
+if(1){
 //~ $json  = {"path_ok":"\/home\/dan\/Dropbox\/web_CRIKA\/web","bbdd":{"u":"root","p":"123qwe","h":"localhost","t":"werb_CRIKA"}}
 $json  = '{"path_ok":"\/home\/dan\/Dropbox\/web_CRIKA\/web","bbdd":{"u":"root","p":"123qwe","h":"localhost","t":"werb_CRIKA"}}';
 $array = array ();
@@ -24,7 +24,7 @@ $array["indexUNO"] = "posicion 2 array";
 //~ $array[1] = "posicion 2 array";
 $json2 = array2json($array);
 $array2 = json2array($json);
-	//~ var_dump($array);
+	var_dump($array);
 }
 
 ?>

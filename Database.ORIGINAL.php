@@ -11,9 +11,20 @@
  *              occurred
  *
  */
- //~ $chuc = new Database();
- //~ $res = $chuc->connect();
- //~ echo $res;
+ $dbOBJ  = new Database();
+//~ $dbOBJ->connect();
+//~ exit($dbOBJ);
+//~ exit;
+//~ $dbOBJ->connect();
+ //~ $dbOBJ2  = new Database();
+//~ $dbOBJ2->connect();
+print_r("\nse ha ejecutado bien\n");
+//~ if($dbOBJ->connect()){
+		//~ print_r("ok");
+//~ }
+//~ else{
+	//~ print_r("NOOK");
+//~ }
 class Database
 {
 
@@ -24,23 +35,26 @@ class Database
     private $db_user = 'root';          // Username
     private $db_pass = '123qwe';          // Password
     private $db_name = 'web_CRIKA';          // Database
+    
+    
+    private $con = false;               // Checks to see if the connection is active
+    private $result = array();          // Results that are returned from the query
+
+    
+    
     /*
      * End edit
      */
-
-    private $con = false;               // Checks to see if the connection is active
-    private $result = array();          // Results that are returned from the query
 
     /*
      * Connects to the database, only one connection
      * allowed
      */
-    public function connect()
+    public function __construct()
     {
-		$return['status'] = 1;
-		$return['value'] = "";
         if(!$this->con)
         {
+			print_r("EMTASSS");
             $myconn = @mysql_connect($this->db_host,$this->db_user,$this->db_pass);
             if($myconn)
             {
@@ -48,32 +62,22 @@ class Database
                 if($seldb)
                 {
                     $this->con = true;
-                    $return['value'] = "conexion establecida a bbdd y tabla";
-                    //return true;
-                    return ($return);
+                    return true;
                 }
                 else
                 {
-				$return['status'] = 0;
-				$return['value'] = "No se puede conectar a esta database Name [".$this->db_name."] ";
-                    //return false;
-                    return ($return);
+                    return false;
                 }
             }
             else
             {
-			  	$return['status'] = 0;
-				$return['value'] = "222222222222 ";
-                //return false;
-                return ($return);
+                return false;
             }
         }
         else
         {
-			  	$return['status'] = 0;
-				$return['value'] = "33333 ";
-                //return false;
-                return ($return);
+			print_r("YA EXISTE");
+            return true;
         }
     }
 
@@ -164,12 +168,11 @@ class Database
     /*
     * Insert values into the table
     * Required: table (the name of the table)
-    *           values (the values to be inserted) ARRAY
+    *           values (the values to be inserted)
     * Optional: rows (if values don't match the number of rows)
     */
     public function insert($table,$values,$rows = null)
     {
-		$result['status']="";
         if($this->tableExists($table))
         {
             $insert = 'INSERT INTO '.$table;
@@ -306,4 +309,5 @@ class Database
         return $this->result;
     }
 }
+
 ?>

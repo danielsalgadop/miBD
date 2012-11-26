@@ -12,13 +12,17 @@ if($r_showtables['status'] == 1){  // asegurarme que respeta convencion de miDB.
 }
 
 $tabla = "ARTISTAS";
+
 $r_tableExists = $BBDD->tableExists($tabla);
 if($r_tableExists['status']){
 	print_r($r_tableExists['status']);
 }
 
-
+if(0){
 $r_select = $BBDD->select($tabla);
+print_r($r_select['avalues']);
+}
+$r_select = $BBDD->describe($tabla);
 print_r($r_select['avalues']);
 
 

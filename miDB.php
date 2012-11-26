@@ -95,6 +95,7 @@ class Database
 					$avalues[] = $row['Tables_in_'.$this->db_name];  // el key del array rows es asi Tables_in_web_CRIKA
 			}
 			$return['avalues'] = $avalues;
+			// se supone que deberia hacer $this->result= $retrun['avalues]; y posteriormente usar getResult
 			return($return);
         }
     }
@@ -152,10 +153,35 @@ class Database
 			$avalues[$resultado['id']] = $datos_un_registro;
 		}
 		$return['avalues'] = $avalues;
+		// se supone que deberia hacer $this->result= $retrun['avalues]; y posteriormente usar getResult
 		return($return);
     }
 
+	/*
+	 * Describe la tabla y el tipo de dato
+	 */
+	public function describe($table){
+		$return['status'] = 0;
+		$return['avalues'] = array();
+		// TODO meter aqui el tableExists
+		$q = 'DESCRIBE '.$table;
+		$query = $this->con->query($q);
+			$avalues = array();
+		while( $resultado = $query->fetch_assoc()) {
+			foreach ($resultado as $parametro_nombre => $parametro_valor){
+				$nom_field =  $resultado['Field'];  // Copio el valor de Field (que da nombre a la columna)
+				unset($resultado['Field']);   // Borro este campo para no tener duplicada la informacion
+				$avalues[$nom_field] = $resultado; //array($parametro_nombre => $parametro_valor);
+			}
+		}
+		$return['avalues'] = $avalues;
+		// se supone que deberia hacer $this->result= $retrun['avalues]; y posteriormente usar getResult
+		return($return);
+	}
+
+
     /*
+     * TODO pasarlo a mysqli
     * Insert values into the table
     * Required: table (the name of the table)
     *           values (the values to be inserted) ARRAY

@@ -168,14 +168,12 @@ class Database
 		$query = $this->con->query($q);
 			$avalues = array();
 		while( $resultado = $query->fetch_assoc()) {
-			foreach ($resultado as $parametro_nombre => $parametro_valor){
-				$nom_field =  $resultado['Field'];  // Copio el valor de Field (que da nombre a la columna)
-				unset($resultado['Field']);   // Borro este campo para no tener duplicada la informacion
-				$avalues[$nom_field] = $resultado; //array($parametro_nombre => $parametro_valor);
-			}
+			$nom_field =  $resultado['Field'];  // Copio el valor de Field (que da nombre a la columna)
+			unset($resultado['Field']);   // Borro este campo para no tener duplicada la informacion
+			$avalues[$nom_field] = $resultado; //array($parametro_nombre => $parametro_valor);
 		}
 		$return['avalues'] = $avalues;
-		// se supone que deberia hacer $this->result= $retrun['avalues]; y posteriormente usar getResult
+		// se supone que deberia hacer $this->result= $retrun['avalues]; y posteriormente usar getResult // nada me ipide hacer ambas
 		return($return);
 	}
 
